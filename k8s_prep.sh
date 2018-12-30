@@ -26,5 +26,3 @@ apt-get update -q
 apt-get install -y kubeadm=1.13.1-00 kubectl=1.13.1-00 kubelet=1.13.1-00
 
 echo reboot....
-
-reboot
