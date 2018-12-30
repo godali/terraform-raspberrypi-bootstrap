@@ -39,8 +39,9 @@ resource "null_resource" "raspberry_pi_bootstrap" {
       "echo 'interface eth0\nstatic ip_address=${lookup(var.static_ips_and_mask, count.index)}\nstatic routers=${var.static_router}\nstatic domain_name_servers=${var.static_dns}' | cat >> /etc/dhcpcd.conf",
 
       # COPY KUBERNETES PREP SCRIPT
-      "curl https://raw.githubusercontent.com/clayshek/terraform-raspberrypi-bootstrap/master/k8s_prep.sh > /home/pi/k8s_prep.sh",
+      "curl https://raw.githubusercontent.com/godali/terraform-raspberrypi-bootstrap/master/k8s_prep.sh > /home/pi/k8s_prep.sh",
       "chmod u+x k8s_prep.sh",
+      "sudo ./k8s_prep.sh"
 
       # OPTIMIZE GPU MEMORY
       "echo 'gpu_mem=16' | sudo tee -a /boot/config.txt",
