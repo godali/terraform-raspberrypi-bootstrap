@@ -7,7 +7,7 @@
 #raspberrypi_ip = "192.168.1.212"
 
 username = "pi"
-password = "raspberry"
+password = "mummy420"
 
 # CONIGURATION PARAMETERS
 #new_hostname = "abhiz_rasp01"

@@ -13,9 +13,9 @@ variable "password" {}
 variable "host_names" {
   type = "map"
   default = {
-    "0" = "abhiz_rasp01"
-    "1" = "abhiz_rasp02"
-    "2" = "abhiz_rasp03"
+    "0" = "abhizrasp01"
+    "1" = "abhizrasp02"
+    "2" = "abhizrasp03"
   }
 }
 variable "new_password" {}

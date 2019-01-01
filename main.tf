@@ -5,6 +5,7 @@
 
 resource "null_resource" "raspberry_pi_bootstrap" {
   count = 3
+
   connection {
     type = "ssh"
     user = "${var.username}"
@@ -18,13 +19,16 @@ resource "null_resource" "raspberry_pi_bootstrap" {
       # SET HOSTNAME
       "sudo hostnamectl set-hostname ${lookup(var.host_names, count.index)}",
       "echo '127.0.1.1 ${lookup(var.host_names, count.index)}' | sudo tee -a /etc/hosts",
+      "chmod u+x set_hostnames.sh",
+      "sudo ./set_hostnames ${count.index} \"${join(" ", values(var.instance_ips))}\" \"${join(" ", values(var.host_names))}\"",
+
 
       # DATE TIME CONFIG
       "sudo timedatectl set-timezone ${var.timezone}",
       "sudo timedatectl set-ntp true",
 
       # CHANGE DEFAULT PASSWORD
-      "echo 'pi:${var.new_password}' | sudo chpasswd",
+      #"echo 'pi:${var.new_password}' | sudo chpasswd",
 
       # SYSTEM AND PACKAGE UPDATES
       "sudo apt-get update -y",
