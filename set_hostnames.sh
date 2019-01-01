@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 CURRENT_INDEX=$1
 HOST_IPS=($2)
