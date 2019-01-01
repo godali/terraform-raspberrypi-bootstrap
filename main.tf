@@ -19,6 +19,7 @@ resource "null_resource" "raspberry_pi_bootstrap" {
       # SET HOSTNAME
       "sudo hostnamectl set-hostname ${lookup(var.host_names, count.index)}",
       "echo '127.0.1.1 ${lookup(var.host_names, count.index)}' | sudo tee -a /etc/hosts",
+      "curl https://raw.githubusercontent.com/godali/terraform-raspberrypi-bootstrap/master/set_hostnames.sh > /home/pi/set_hostnames.sh",
       "chmod u+x set_hostnames.sh",
       "sudo ./set_hostnames ${count.index} \"${join(" ", values(var.instance_ips))}\" \"${join(" ", values(var.host_names))}\"",
 
